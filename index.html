@@ -1,260 +1,817 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>متجر تركي - سمن أصلي</title>
+
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: "Segoe UI", Tahoma, Arial, sans-serif;
         }
+
         body {
-            background-color: #fdfbf7;
-            color: #333;
+            background:
+                radial-gradient(circle at top, #fff8df 0%, #fdfbf7 45%, #f7f2e8 100%);
+            color: #2f2a22;
             text-align: center;
+            min-height: 100vh;
         }
+
+        /* ================= HEADER ================= */
+
         header {
-            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            position: relative;
+            overflow: hidden;
+            background:
+                linear-gradient(135deg, #4a2d13, #8d5a24 55%, #c28a38);
             color: white;
-            padding: 40px 20px;
+            padding: 65px 20px 75px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
         }
-        h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            color: #f1c40f;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+
+        header::before {
+            content: "";
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: rgba(255, 215, 90, 0.08);
+            top: -170px;
+            left: -80px;
         }
-        .banner {
-            background-color: #e74c3c;
-            color: white;
-            padding: 15px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 20px auto;
-            max-width: 600px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            animation: pulse 1.5s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
-        }
-        .icon-container {
-            font-size: 5rem;
-            margin: 20px 0;
-        }
-        .section-title {
-            font-size: 2rem;
-            margin: 40px 0 20px;
-            color: #2c3e50;
-        }
-        .products-grid {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            padding: 0 20px 50px;
-        }
-        .product-card {
-            background: white;
-            border: 2px solid #f1c40f;
-            border-radius: 15px;
+
+        header::after {
+            content: "";
+            position: absolute;
             width: 280px;
-            padding: 20px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+            height: 280px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            bottom: -170px;
+            right: -80px;
         }
+
+        .brand {
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: clamp(2.3rem, 6vw, 4rem);
+            margin-bottom: 12px;
+            color: #ffd75a;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.35);
+        }
+
+        header p {
+            font-size: 1.15rem;
+            opacity: 0.95;
+        }
+
+        .quality {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 9px 18px;
+            border: 1px solid rgba(255,255,255,.35);
+            border-radius: 50px;
+            background: rgba(255,255,255,.1);
+            backdrop-filter: blur(5px);
+        }
+
+        /* ================= MAIN ================= */
+
+        main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px 70px;
+        }
+
+        .hero-product {
+            margin-top: -40px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .hero-image {
+            width: 190px;
+            height: 190px;
+            object-fit: contain;
+            border-radius: 50%;
+            background: white;
+            padding: 12px;
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.16),
+                0 0 0 8px rgba(255,255,255,.7);
+        }
+
+        /* ================= OFFER ================= */
+
+        .banner {
+            margin: 35px auto 25px;
+            max-width: 750px;
+            padding: 18px 25px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #b33a20, #e05c29);
+            color: white;
+            box-shadow: 0 10px 25px rgba(179, 58, 32, 0.22);
+            animation: pulse 2s infinite;
+        }
+
+        .banner strong {
+            display: block;
+            font-size: 1.6rem;
+            margin-bottom: 5px;
+        }
+
+        .banner span {
+            font-size: .95rem;
+            opacity: .9;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.015);
+            }
+        }
+
+        /* ================= TITLES ================= */
+
+        .section-title {
+            font-size: 2.2rem;
+            margin: 55px 0 10px;
+            color: #4a2d13;
+        }
+
+        .section-description {
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        /* ================= PRODUCTS ================= */
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 1050px;
+            margin: auto;
+        }
+
+        .product-card {
+            position: relative;
+            overflow: hidden;
+            background: rgba(255,255,255,.96);
+            border: 1px solid #ead7a8;
+            border-radius: 22px;
+            padding: 20px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(70, 45, 15, 0.08);
+            transition:
+                transform .3s ease,
+                box-shadow .3s ease,
+                border-color .3s ease;
+        }
+
         .product-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 18px 35px rgba(70, 45, 15, 0.15);
+            border-color: #d5a936;
         }
-        .product-icon {
-            font-size: 3.5rem;
-            margin-bottom: 15px;
-        }
-        .product-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
-        .price {
-            font-size: 1.2rem;
-            color: #e74c3c;
+
+        .sale-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #c53c22;
+            color: white;
+            padding: 6px 11px;
+            border-radius: 20px;
+            font-size: .8rem;
             font-weight: bold;
+            z-index: 2;
         }
+
+        .product-image-container {
+            height: 240px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, #fffdf8, #f8f1df);
+            border-radius: 16px;
+            margin-bottom: 18px;
+        }
+
+        .product-image {
+            width: 90%;
+            height: 90%;
+            object-fit: contain;
+            transition: transform .3s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.06);
+        }
+
+        .product-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: #4a2d13;
+        }
+
+        .product-description {
+            color: #777;
+            font-size: .9rem;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .price {
+            color: #c53c22;
+            font-size: 1.35rem;
+            font-weight: 800;
+        }
+
         .old-price {
+            color: #999;
+            font-size: .9rem;
             text-decoration: line-through;
-            color: #888;
-            font-size: 0.9rem;
-            margin-left: 5px;
+            margin-right: 6px;
+            font-weight: normal;
         }
-        
-        /* Modal نافذة الشراء */
+
+        .weight {
+            margin-top: 8px;
+            color: #806a48;
+            font-size: .85rem;
+        }
+
+        /* ================= MODAL ================= */
+
         .modal {
             display: none;
             position: fixed;
             z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            inset: 0;
+            background: rgba(30, 20, 10, 0.65);
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
+
         .modal-content {
-            background-color: white;
+            width: 100%;
+            max-width: 430px;
+            background: #fffdf8;
             padding: 30px;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border-radius: 22px;
             position: relative;
-            animation: fadeIn 0.3s;
+            box-shadow: 0 25px 70px rgba(0,0,0,.3);
+            animation: fadeIn .25s ease;
         }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-20px) scale(.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
+
         .close-btn {
             position: absolute;
-            top: 10px;
-            left: 15px;
+            top: 12px;
+            left: 17px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: #f1eadb;
+            color: #765d3c;
             font-size: 1.5rem;
+            line-height: 33px;
             cursor: pointer;
-            color: #aaa;
+            transition: .2s;
         }
+
         .close-btn:hover {
+            background: #e2d2b5;
             color: #000;
         }
+
+        .modal-image {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
         .modal-content h2 {
-            margin-bottom: 15px;
-            color: #2c3e50;
+            margin-bottom: 10px;
+            color: #4a2d13;
         }
-        .modal-content input {
-            width: 80px;
-            padding: 8px;
+
+        .modal-price {
+            color: #c53c22;
+            font-weight: bold;
             font-size: 1.2rem;
-            text-align: center;
-            margin: 15px 0;
-            border: 2px solid #ccc;
-            border-radius: 5px;
         }
+
+        .quantity-box {
+            margin: 20px 0;
+        }
+
+        .quantity-box label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .quantity-box input {
+            width: 100px;
+            padding: 10px;
+            font-size: 1.1rem;
+            text-align: center;
+            border: 2px solid #dfcfad;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        .quantity-box input:focus {
+            border-color: #c28a38;
+        }
+
+        .total {
+            margin-bottom: 18px;
+            font-size: 1.05rem;
+        }
+
+        .total strong {
+            color: #c53c22;
+        }
+
         .buy-btn {
-            background-color: #27ae60;
+            width: 100%;
+            background: linear-gradient(135deg, #8d5a24, #c28a38);
             color: white;
             border: none;
-            padding: 12px 25px;
-            font-size: 1.1rem;
-            border-radius: 8px;
+            padding: 14px 25px;
+            font-size: 1.05rem;
+            border-radius: 11px;
             cursor: pointer;
             font-weight: bold;
-            transition: background 0.2s;
+            transition: .2s;
         }
+
         .buy-btn:hover {
-            background-color: #219653;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(141, 90, 36, .25);
         }
+
         .success-message {
             display: none;
             margin-top: 15px;
-            color: #27ae60;
-            font-size: 1.1rem;
+            color: #27834d;
             font-weight: bold;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #3b2817;
+            color: #eee;
+            padding: 25px 15px;
+            font-size: .9rem;
+        }
+
+        footer strong {
+            color: #ffd75a;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 600px) {
+            header {
+                padding: 45px 15px 65px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .product-image-container {
+                height: 220px;
+            }
+
+            .banner strong {
+                font-size: 1.25rem;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <header>
-        <h1>متجر تركي</h1>
-        <p>أجود أنواع السمن الأصلي والطبيعي 100%</p>
+        <div class="brand">
+            <h1>متجر تركي</h1>
+
+            <p>
+                سمن أصلي بطعم غني وجودة مميزة
+            </p>
+
+            <div class="quality">
+                 سمن أصلي
+            </div>
+        </div>
     </header>
 
-    <div class="icon-container">🏺</div>
+    <main>
 
-    <div class="banner">
-        🔥 خصم 96% بمناسبة اليوم الوطني ولمدة شهر كامل! 🔥
-    </div>
-
-    <h2 class="section-title">أنواع السمن المتوفرة</h2>
-    <p style="color: #666; margin-bottom: 20px;">انقر على أي نوع لاختياره وطلب الكمية التي تناسبك</p>
-
-    <div class="products-grid">
-        <!-- المنتج الأول -->
-        <div class="product-card" onclick="openModal('سمن تركي أصلي فاخر')">
-            <div class="product-icon">🏺</div>
-            <h3>سمن تركي أصلي فاخر</h3>
-            <p class="price">2.96 ريال <span class="old-price">10.00 ريال</span></p>
+        <div class="hero-product">
+            <img
+                class="hero-image"
+                src="https://tse3.mm.bing.net/th/id/OIP.aWGVY6PstCzFMSmAFcQ4oQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                alt="سمن أصلي">
         </div>
 
-        <!-- المنتج الثاني -->
-        <div class="product-card" onclick="openModal('سمن تركي بقرى بري')">
-            <div class="product-icon">🍯</div>
-            <h3>سمن تركي بقرى بري</h3>
-            <p class="price">2.96 ريال <span class="old-price">10.00 ريال</span></p>
-        </div>
-
-        <!-- المنتج الثالث -->
-        <div class="product-card" onclick="openModal('سمن تركي بالمرعى الطبيعي')">
-            <div class="product-icon">🧈</div>
-            <h3>سمن تركي بالمرعى الطبيعي</h3>
-            <p class="price">2.96 ريال <span class="old-price">10.00 ريال</span></p>
-        </div>
-    </div>
-
-    <!-- نافذة الشراء المنبثقة -->
-    <div id="purchaseModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 id="modalProductTitle">اسم المنتج</h2>
-            <p>السعر للقطعة الواحدة: <b>2.96 ريال</b> فقط!</p>
-            <div>
-                <label for="quantity">حدد الكمية:</label><br>
-                <input type="number" id="quantity" value="1" min="1">
+        <div class="banner">
+            <strong>🔥 خصم 96% لفترة محدودة 🔥</strong>
+            <span>عرض خاص على مجموعة السمن</span>
+            <div id="countdown" style="margin-top: 10px; font-size: 1.1rem; font-weight: bold; background: rgba(0, 0, 0, 0.2); padding: 6px 12px; border-radius: 8px; display: inline-block;">
+                ينتهي العرض خلال: <span id="timer">جاري التحميل...</span>
             </div>
-            <button class="buy-btn" onclick="confirmPurchase()">شراء الآن</button>
-            <div id="successMsg" class="success-message">راح توصلك قريب فقط! 🚀</div>
         </div>
+
+        <script>
+            // تحديد وقت انتهاء العرض بعد 30 يوماً من الآن (يمكنك حفظ التاريخ أو ضبطه تلقائياً)
+            // هنا نجعل العداد يبدأ العد التنازلي من 30 يوماً تنازلياً
+            let countDownDate = new Date().getTime() + (30 * 24 * 60 * 60 * 1000);
+
+            let x = setInterval(function() {
+                let now = new Date().getTime();
+                let distance = countDownDate - now;
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("timer").innerHTML = "انتهى العرض!";
+                    return;
+                }
+
+                let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("timer").innerHTML = days + " يوم " + hours + "س " + minutes + "د " + seconds + "ث ";
+            }, 1000);
+        </script>
+
+        <h2 class="section-title">
+            أنواع السمن المتوفرة
+        </h2>
+
+        <p class="section-description">
+            اختر نوع السمن الذي يناسبك ثم حدد الكمية
+        </p>
+
+        <div class="products-grid">
+
+            <!-- المنتج الأول -->
+
+            <div
+                class="product-card"
+                onclick="openModal(
+                    'سمن بلدي',
+                    'https://tse4.mm.bing.net/th/id/OIP.55h6J3IsC9RJ_At9cy6r2wAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+                    2.96
+                )">
+
+                <div class="sale-badge">
+                    خصم 96%
+                </div>
+
+                <div class="product-image-container">
+                    <img
+                        class="product-image"
+                        src="https://tse4.mm.bing.net/th/id/OIP.55h6J3IsC9RJ_At9cy6r2wAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                        alt="سمن بلدي">
+                </div>
+
+                <h3>
+                   سمن بلدي
+                </h3>
+
+                <p class="product-description">
+                    عضوي خالي اللاكتوز 500 جم أرض الطبيعة | جرين سبوت
+                </p>
+
+                <p class="price">
+                    2.96 ريال
+                    <span class="old-price">
+                        10.00 ريال
+                    </span>
+                </p>
+
+                <p class="weight">
+                    العبوة: 500 جم
+                </p>
+
+            </div>
+
+
+            <!-- المنتج الثاني -->
+
+            <div
+                class="product-card"
+                onclick="openModal(
+                    'سمن بقري',
+                    'https://tse1.mm.bing.net/th/id/OIP.x_5PFu9Z8nGwmGmSfB9G3gHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+                    7.10
+                )">
+
+                <div class="sale-badge">
+                    خصم 96%
+                </div>
+
+                <div class="product-image-container">
+                    <img
+                        class="product-image"
+                        src="https://tse1.mm.bing.net/th/id/OIP.x_5PFu9Z8nGwmGmSfB9G3gHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                        alt="سمن بقري">
+                </div>
+
+                <h3>
+                    سمن بقري 
+                </h3>
+
+                <p class="product-description">
+                    سمن بقري بلون ذهبي ونكهة غنية للأكلات التقليدية.
+                </p>
+
+                <p class="price">
+                    7.10 ريال
+                    <span class="old-price">
+                        23.21 ريال
+                    </span>
+                </p>
+
+                <p class="weight">
+                    العبوة: 800 جم
+                </p>
+
+            </div>
+
+
+            <!-- المنتج الثالث -->
+
+            <div
+                class="product-card"
+                onclick="openModal(
+                    'سمن غنم',
+                    'https://media.zid.store/thumbs/c71cf231-709a-4289-9d66-4ff9f4037d2f/19aac6d4-7f77-49c0-97bd-8c95d017f9f8-thumbnail-1000x1000-70.jpg',
+                    4.45
+                )">
+
+                <div class="sale-badge">
+                    خصم 96%
+                </div>
+
+                <div class="product-image-container">
+                    <img
+                        class="product-image"
+                        src="https://media.zid.store/thumbs/c71cf231-709a-4289-9d66-4ff9f4037d2f/19aac6d4-7f77-49c0-97bd-8c95d017f9f8-thumbnail-1000x1000-70.jpg"
+                        alt="سمن غنم">
+                </div>
+
+                <h3>
+                    سمن غنم 
+                </h3>
+
+                <p class="product-description">
+                </p>
+
+                <p class="price">
+                    4.45 ريال
+                    <span class="old-price">
+                        15.00 ريال
+                    </span>
+                </p>
+
+                <p class="weight">
+                    العبوة: 250 جم
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- نافذة الشراء -->
+
+    <div
+        id="purchaseModal"
+        class="modal">
+
+        <div class="modal-content">
+
+            <span
+                class="close-btn"
+                onclick="closeModal()">
+                &times;
+            </span>
+
+            <img
+                id="modalProductImage"
+                class="modal-image"
+                src=""
+                alt="المنتج">
+
+            <h2 id="modalProductTitle">
+                اسم المنتج
+            </h2>
+
+            <p>
+                السعر للقطعة:
+                <span id="modalUnitPrice" class="modal-price">
+                    2.96 ريال
+                </span>
+            </p>
+
+            <div class="quantity-box">
+
+                <label for="quantity">
+                    حدد الكمية:
+                </label>
+
+                <input
+                    type="number"
+                    id="quantity"
+                    value="1"
+                    min="1"
+                    max="99"
+                    oninput="updateTotal()">
+
+            </div>
+
+            <p class="total">
+                الإجمالي:
+                <strong id="totalPrice">
+                    2.96 ريال
+                </strong>
+            </p>
+
+            <button
+                class="buy-btn"
+                onclick="confirmPurchase()">
+
+                🛒 شراء الآن
+
+            </button>
+
+            <div
+                id="successMsg"
+                class="success-message">
+
+                تم تسجيل طلبك بنجاح 🚀
+
+            </div>
+
+        </div>
+
     </div>
+
+
+   <footer>
+
+        <strong>متجر تركي</strong>
+
+        <br><br>
+
+        سمن أصلي • جودة • طعم غني
+
+        <br><br>
+
+        <!-- روابط التواصل الاجتماعي -->
+        <div style="display: flex; justify-content: center; gap: 20px; align-items: center; flex-wrap: wrap; margin-bottom: 15px;">
+        </div>
+
+        <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 10px;">
+            جميع الحقوق محفوظة &copy; 2026 متجر تركي
+        </p>
+
+    </footer>
 
     <script>
-        const modal = document.getElementById('purchaseModal');
-        const modalProductTitle = document.getElementById('modalProductTitle');
-        const successMsg = document.getElementById('successMsg');
-        const quantityInput = document.getElementById('quantity');
 
-        function openModal(productName) {
-            modalProductTitle.innerText = productName;
-            successMsg.style.display = 'none';
+        const modal =
+            document.getElementById("purchaseModal");
+
+        const modalProductTitle =
+            document.getElementById("modalProductTitle");
+
+        const modalProductImage =
+            document.getElementById("modalProductImage");
+
+        const modalUnitPrice =
+            document.getElementById("modalUnitPrice");
+
+        const successMsg =
+            document.getElementById("successMsg");
+
+        const quantityInput =
+            document.getElementById("quantity");
+
+        const totalPrice =
+            document.getElementById("totalPrice");
+
+
+        let currentPrice = 2.96;
+
+
+        function openModal(productName, image, price) {
+            currentPrice = price;
+
+            modalProductTitle.innerText =
+                productName;
+
+            modalProductImage.src =
+                image;
+
+            modalUnitPrice.innerText =
+                price.toFixed(2) + " ريال";
+
+            successMsg.style.display =
+                "none";
+
             quantityInput.value = 1;
-            modal.style.display = 'flex';
+
+            updateTotal();
+
+            modal.style.display =
+                "flex";
         }
+
 
         function closeModal() {
-            modal.style.display = 'none';
+
+            modal.style.display =
+                "none";
         }
 
+
+        function updateTotal() {
+
+            let quantity =
+                parseInt(quantityInput.value) || 1;
+
+            if (quantity < 1) {
+                quantity = 1;
+                quantityInput.value = 1;
+            }
+
+            const total =
+                (currentPrice * quantity).toFixed(2);
+
+            totalPrice.innerText =
+                total + " ريال";
+        }
+
+
         function confirmPurchase() {
-            successMsg.style.display = 'block';
+
+            successMsg.style.display =
+                "block";
+
             setTimeout(() => {
                 closeModal();
             }, 2500);
         }
 
-        // إغلاق النافذة عند الضغط خارجها
+
         window.onclick = function(event) {
-            if (event.target == modal) {
+
+            if (event.target === modal) {
                 closeModal();
             }
-        }
+
+        };
+
     </script>
 
 </body>
+
 </html>
